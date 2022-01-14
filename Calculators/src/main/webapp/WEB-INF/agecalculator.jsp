@@ -21,7 +21,7 @@
         </form>
         
         <p>${message}</p>
-        <a href="ArithmeticCalculatorServlet?">Arithmetic Calculator </a>
+        <a href="arithmetic">Arithmetic Calculator </a>
 
     </body>
 </html>
