@@ -41,7 +41,28 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
+            String fInput = request.getParameter("Farithmetic");
+            int fNumber  = Integer.parseInt(fInput);
+            String sInput = request.getParameter("Sarithmetic");
+            int sNumber  = Integer.parseInt(sInput);
+            
+            String result = "";
+            
+            switch("calculation"){
+                case "add": result = Integer.toString(fNumber + sNumber);
+                    break;
+                case "sub": result = Integer.toString(fNumber - sNumber);
+                    break;
+                case "mul": result = Integer.toString(fNumber * sNumber);
+                    break;
+                case "mod": result = Integer.toString(fNumber / sNumber);
+                    break;
+               default: result = "---";
+                    break;
+            }
+            request.setAttribute("Farithmetic", fNumber);
+            request.setAttribute("Sarithmetic", sNumber);
+            request.setAttribute("output", result);
         
         
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);

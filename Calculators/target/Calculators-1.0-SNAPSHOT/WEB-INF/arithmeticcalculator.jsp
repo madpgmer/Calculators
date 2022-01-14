@@ -20,12 +20,12 @@
             <label for="arithmetic">Second: </label>
             <input type="number" name="Sarithmetic" id="Sarithmetic">
             <br>
-            <button type="submit"><strong>+</strong></button>
-            <button type="submit"><strong>-</strong></button>
-            <button type="submit"><strong>*</strong></button>
-            <button type="submit"><strong>%</strong></button>
+            <button type="submit" name="calculation" id="add"><strong>+</strong></button>
+            <button type="submit" name="calculation" id="sub"><strong>-</strong></button>
+            <button type="submit" name="calculation" id="mul"><strong>*</strong></button>
+            <button type="submit" name="calculation" id="mod"><strong>/</strong></button>
         </form>
-        
-        <a href="AgeCalculatorServlet?">Age Calculator </a>
+        <p>${output}</p>
+        <a href="age">Age Calculator </a>
     </body>
 </html>
