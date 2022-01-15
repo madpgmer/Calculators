@@ -26,6 +26,8 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //If no calculation has been performed, then the result should show as "---".
+        request.setAttribute("output", "---");
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
     }
 
@@ -41,28 +43,38 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-            String fInput = request.getParameter("Farithmetic");
+            String fInput = request.getParameter("fArithmetic");
+            String sInput = request.getParameter("sArithmetic");
+        try{    
             int fNumber  = Integer.parseInt(fInput);
-            String sInput = request.getParameter("Sarithmetic");
             int sNumber  = Integer.parseInt(sInput);
+                       
+            int result= 0;
+            int calc;
             
-            String result = "";
-            
-            switch("calculation"){
-                case "add": result = Integer.toString(fNumber + sNumber);
+            switch(request.getParameter("calculation")){
+                case "add": 
+                    result = fNumber + sNumber;
                     break;
-                case "sub": result = Integer.toString(fNumber - sNumber);
+                case "sub": 
+                    result = fNumber - sNumber;
                     break;
-                case "mul": result = Integer.toString(fNumber * sNumber);
+                case "mul": 
+                    result = fNumber * sNumber;
                     break;
-                case "mod": result = Integer.toString(fNumber / sNumber);
+                case "mod": 
+                    result = fNumber / sNumber;
                     break;
-               default: result = "---";
-                    break;
+            }            
+            String finalResult = Integer.toString(result);            
+            request.setAttribute("output", "Result: " + finalResult);
             }
-            request.setAttribute("Farithmetic", fNumber);
-            request.setAttribute("Sarithmetic", sNumber);
-            request.setAttribute("output", result);
+            catch (Exception ex){
+                request.setAttribute("output", "Result: " + "Invalid" );
+            }
+             //Ensures the textboxes stay populated with the values they had previously entered
+            request.setAttribute("fArithmetic", fInput);
+            request.setAttribute("sArithmetic", sInput);      
         
         
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
